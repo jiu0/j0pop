@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit|ie-stand"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no, email=no"/>
+<meta name="msapplication-tap-highlight" content="no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="x5-page-mode" content="app"/>
+<meta name="browsermode" content="application"/>
+<title>弹层</title>
+<link href="skin/a_leguan.css" rel="stylesheet" />
+<style>
+.an1_btns{text-align:center;}
+.an1_btn.now{background-color:#00f;}
+.an1_mods{position:absolute;top:0;left:0;display:none;width:100%;height:100%;background-color:rgba(0,0,0,.3);}
+.an1_mod{position:absolute;top:50%;left:50%;margin-top:-75pt;margin-left:-150px;width:300px;height:200px;background-color:#f30;color:#fff;}
+.an1_guanbi{position:absolute;top:-24px;right:-24px;width:24px;height:24px;border-radius:50%;background-color:#999;}
+.an1_guanbi,.an_jiage,.goumai{text-align:center;}
+.goumai{margin:0 auto;width:5pc;border-radius:4px;background-color:#ff0;}
+
+
+
+</style>
+</head>
+<body id="alert">
+
+<p class="an1_btns">
+	<b class="an1_btn" gid="112" gname="花篮" gprice="120">按钮1</b>
+</p>
+<div class="an1_mods">
+	<div class="an1_mod">
+		<div class="an1_cot">
+			<div class="an1_text">
+				<p>
+					这是一个警告框，这是一个警告框，这是一个警告框，这是一个警告框，
+				</p>
+				<p class="an_jiage" id="gprice2">
+				</p>
+				<p class="goumai">
+					确定购买
+				</p>
+			</div>
+		</div>
+		<b class="an1_guanbi">X</b>
+	</div>
+</div>
+  
+  
+<script src="js/jq.js"></script>
+<script>
+
+var an1_btn = $('.an1_btn');
+var an1_modss = $('.an1_mods');
+j0dakai(an1_btn, an1_modss);
+j0guanbi(an1_modss, an1_modss);
+var an1_guanbi = $('.an1_guanbi');
+j0guanbi(an1_guanbi, an1_modss);
+var an1_mods = $('.an1_mod');
+j0paga(an1_mods);
+
+function chuli(obj) {
+	var gid = obj.attr('gid'),
+		gname = obj.attr('gname'),
+		gprice = obj.attr('gprice');
+	var gpriice2 = $('#gprice2');
+	gpriice2.html(gprice);
+	var goumai = $('.goumai');
+	goumai.click(function() {
+		console.log('~~~');
+		console.log(gname), console.log('~~~');
+		$('.an1_text').css('display', 'none');
+		var success = '<p style="text-align:center;">谢谢你购买,请关闭弹层。</p>';
+		$('.an1_cot').append(success)
+	})
+}
+function j0dakai(obj, win) {
+	obj.click(function() {
+		win.css('display', 'block');
+		chuli(obj)
+	})
+}
+function j0guanbi(obj, win) {
+	obj.click(function() {
+		win.css('display', 'none');
+		chuli2(obj)
+	})
+}
+function j0paga(obj) {
+	obj.click(function(ev) {
+		ev.stopPropagation()
+	})
+}
+
+</script>
+</body>
+</html>
